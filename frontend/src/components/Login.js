@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate,Link,useLocation} from 'react-router-dom'
 
 function Login(props) {
-
+    
+    const location = useLocation();
     const [credentials, setCredentials] = useState({ email: "", password: "" })
     let history = useNavigate();
 
@@ -11,7 +12,7 @@ function Login(props) {
     }
 
     const handleClick = async () => {
-        const response = await fetch("http://localhost:5000/api/auth/login", {
+        const response = await fetch("api/auth/login", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -34,14 +35,14 @@ function Login(props) {
     return (
         <div>
             <div className='text-center my-4'>
-                <h1>iNOTEBOOK</h1>
+                <h1>NOTEBOOK</h1>
                 <p><b>Your notes on cloud ☁️</b></p>
             </div>
 
            
 
             <div className="container my-5">
-            <p className="text-center"><i>Login to continue using iNotebook 😊 </i></p>
+            <p className="text-center"><i>Login to continue using Notebook 😊 </i></p>
                 <div className="mb-3 ">
                     <label htmlFor="email" className="form-label">Email address</label>
                     <input type="email" className="form-control" onChange={onchange} id="email" name="email" placeholder="name@example.com" />
@@ -56,7 +57,7 @@ function Login(props) {
                 <button className='btn btn-primary' onClick={handleClick}>Login</button>
             </div>
             <br/>
-            <p className='text-center last-para'>Don't have an account? <a href="/signup">SignUp-&gt;</a> </p>
+            <p className='text-center last-para'>Don't have an account?  <Link to="/signup" className={`nav-link ${location.pathname === "/signup" ? "active" : ""}`} >SignUp</Link> </p>
         </div>
     )
 }
