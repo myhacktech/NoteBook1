@@ -1,3 +1,5 @@
+// what is use of useRef in this project?????????????????
+
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import NoteContext from '../context/notes/noteContext'
 import EditNote from './EditNote';
@@ -50,6 +52,7 @@ function Notes(props) {
                 </div>
 
             </div>
+
             <EditNote reference={ref} closeref={refclose} enote={enote} onchange={onchange} handleChange={handleEdit} />
 
             <div className='row mb-5'>
