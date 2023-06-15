@@ -1,9 +1,10 @@
 import React, { useContext, useState, useEffect } from 'react';
 import NoteContext from '../context/notes/noteContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,Link,useLocation } from 'react-router-dom';
 
-function AddNote(props) {
-
+function AddNote(props) 
+{
+    const location = useLocation();
     const context = useContext(NoteContext);
     const {addNote, getNote} = context;
 
@@ -17,13 +18,14 @@ function AddNote(props) {
     }
     
     const handleClick=(e)=>{
-        e.preventDefault();
+        e.preventDefault(); //to prevent page from reloading
         addNote(note.title, note.description, note.tag)
         setnote({  title: "", description: "", tag: ""})
         props.showAlert("Note added successfully", "success")
     }
-
+   // use of 
     useEffect(() => {
+        //if user is not logged in then redirect to login page
         if (localStorage.getItem('token')) {
             getNote()
         } else {
@@ -65,9 +67,10 @@ function AddNote(props) {
 
              
             </div>
-
-           <a href="/notes"><p className='text-center'>View your notes &gt;</p></a>
-
+            
+            <div className="text-center">
+            <Link to="/notes" className={`nav-link ${location.pathname === "/notes" ? "active" : ""}`} aria-current="page" >Your Notes</Link>
+             </div>
         </div>
     )
 }
