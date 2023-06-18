@@ -13,7 +13,7 @@ connectToMongo();// connecting to database
 const app = express();
 app.use(cors()); //  Calling use(cors()) will enable the express server to respond to requests(put ,post ,delete,get).
 
-app.use(express.json()); //  accept json data
+app.use(express.json()); // to accept json data
 
 //Available Routes
 app.use('/api/auth', require('./routes/auth')) 
