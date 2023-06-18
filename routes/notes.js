@@ -31,9 +31,12 @@ router.post(
   ],
   async (req, res) => {
     //if there are errors in request, return bad request and the errors
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+    // console.log(req);
+    const error = validationResult(req);
+    // console.log(error.array().length);
+
+    if (error.array().length > 0) {
+      return res.status(400).json({ error: error.array() });
     }
     // create a new note and save it to database
     try {
