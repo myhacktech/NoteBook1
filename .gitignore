@@ -12,6 +12,11 @@
 .env
 notes.txt
 
+SECURITY.md
+README.md
+LICENSE
+contributing.md
+CODE_OF_CONDUCT.md
 
 # misc
 .DS_Store
