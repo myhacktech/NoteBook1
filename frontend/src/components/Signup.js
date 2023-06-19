@@ -36,7 +36,7 @@ function SignUp(props) {
       if (json.success) {
         localStorage.setItem("token", json.authtoken); // storing token in local storage
         history("/"); // redirect to home page
-        props.showAlert("Account created successfully", "success");
+        props.showAlert("Account created successfully , Now you can add Notes", "success");
       } else {
         props.showAlert("Invalid Details! " + json.error, "danger");
       }
