@@ -11,6 +11,7 @@
 # production
 .env
 notes.txt
+commands of git.txt
 
 SECURITY.md
 README.md
