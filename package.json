@@ -1,3 +1,4 @@
+// The --prefix flag is used to specify the directory (folder) where the previous command should be executed.
 {
   "name": "notebook-backend",
   "version": "1.0.0",
