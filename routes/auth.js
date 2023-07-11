@@ -49,13 +49,14 @@ router.post(
         name: req.body.name,
         password: secPass,
       });
-
+      
       // use of jwt token to provide secure communication between client and server
       // it generate a token which has 3 parts
       // 1. algorthims and type of token
       // 2. payload which is data -- here we store user id
       // 3. secret key -- process.env.SECRET_KEY
-
+      // works as a signature
+      // store in local storage of browser and send it to server with every request to authenticate user and provide access to data of user if token is valid 
 
       // we have to choose some information(data / payload ) which is different for every user so that we generate a unique token for every user
       // so here we choose user id as information (data / payload)

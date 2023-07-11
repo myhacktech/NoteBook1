@@ -12,7 +12,7 @@ import Login from "./components/Login";
 
 function App() {
   const [alert, setAlert] = useState(null);
-
+  const [position, setPosition] = useState({ x: 0, y: 0 });
   const showAlert = (msg, type) => {
     setAlert({
       msg: msg,
@@ -27,17 +27,48 @@ function App() {
     <>
       <NoteState>
         <BrowserRouter>
-          <Navbar showAlert={showAlert}/>
-          <Alert alert={alert} />
+          <div
+            onPointerMove={(e) => {
+              setPosition({ x: e.clientX, y: e.clientY });
+            }}
+            style={{ position: "relative", width: "100vw", height: "100vh" }}
+          >
+            <div
+              style={{
+                position: "absolute",
+                backgroundColor: "green",
+                borderRadius: "50%",
+                transform: `translate(${position.x}px, ${position.y}px)`,
+                left: -10,
+                top: -10,
+                width: 20,
+                height: 20,
+              }}
+            />
+            <Navbar showAlert={showAlert} />
+            <Alert alert={alert} />
 
-          <div className="container my-5">
-            <Routes>
-              <Route path="/notes" element={<Notes showAlert={showAlert} />} />
-              <Route path="/" element={<AddNote showAlert={showAlert} />} />
-              <Route path="/about" element={<About showAlert={showAlert} />} />
-              <Route path="/login" element={<Login showAlert={showAlert} />} />
-              <Route path="/signup" element={<SignUp showAlert={showAlert} />} />
-            </Routes>
+            <div className="container my-5">
+              <Routes>
+                <Route
+                  path="/notes"
+                  element={<Notes showAlert={showAlert} />}
+                />
+                <Route path="/" element={<AddNote showAlert={showAlert} />} />
+                <Route
+                  path="/about"
+                  element={<About showAlert={showAlert} />}
+                />
+                <Route
+                  path="/login"
+                  element={<Login showAlert={showAlert} />}
+                />
+                <Route
+                  path="/signup"
+                  element={<SignUp showAlert={showAlert} />}
+                />
+              </Routes>
+            </div>
           </div>
         </BrowserRouter>
       </NoteState>

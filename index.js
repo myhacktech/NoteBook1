@@ -7,7 +7,7 @@ var cors = require('cors');
 
 dotenv.config(); 
 
-connectToMongo();// connecting to database
+connectToMongo(); // connecting to database
 
 
 const app = express();
