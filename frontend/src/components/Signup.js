@@ -8,6 +8,7 @@ function SignUp(props) {
     password: "",
     cpassword: "",
   });
+  const [load, setLoad] = useState(false); // for loading spinner
   let history = useNavigate();
   const location = useLocation();
   const onchange = (e) => {
@@ -23,6 +24,7 @@ function SignUp(props) {
     let pass = document.querySelector("#password").value; // getting password and confirm password
     let cpass = document.querySelector("#cpassword").value;
     if (pass === cpass) {
+      setLoad(true);
       const response = await fetch("api/auth/createuser", {
         method: "POST",
         headers: {
@@ -30,13 +32,17 @@ function SignUp(props) {
         },
         body: JSON.stringify({ email, name, password }),
       });
+      setLoad(false);
       const json = await response.json();
       // console.log(json);
 
       if (json.success) {
         localStorage.setItem("token", json.authtoken); // storing token in local storage
         history("/"); // redirect to home page
-        props.showAlert("Account created successfully , Now you can add Notes", "success");
+        props.showAlert(
+          "Account created successfully , Now you can add Notes",
+          "success"
+        );
       } else {
         props.showAlert("Invalid Details! " + json.error, "danger");
       }
@@ -119,9 +125,20 @@ function SignUp(props) {
           </div>
         </div>
         <div className="text-center">
-          <button type="submit" className="btn btn-primary">
-            SignUp
-          </button>
+          {!load ? (
+            <button type="submit" className="btn btn-primary">
+              SignUp
+            </button>
+          ) : (
+            <button className="btn btn-primary" type="button" disabled>
+              <span
+                className="spinner-border spinner-border-sm"
+                role="status"
+                aria-hidden="true"
+              ></span>
+              Loading...
+            </button>
+          )}
         </div>
         <br />
         <p className="text-center last-para">
