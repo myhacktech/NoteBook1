@@ -83,6 +83,7 @@ function SignUp(props) {
               onChange={onchange}
               id="name"
               name="name"
+              placeholder="Enter your name"
               required
             />
           </div>
