@@ -45,12 +45,12 @@ function Login(props) {
             <p className="text-center"><i>Login to continue using Notebook 😊 </i></p>
                 <div className="mb-3 ">
                     <label htmlFor="email" className="form-label">Email address</label>
-                    <input type="email" className="form-control" onChange={onchange} id="email" name="email" placeholder="name@example.com" />
+                    <input type="email" className="form-control" onChange={onchange} id="email" name="email" placeholder="guest@gmail.com" />
                 </div>
 
                 <div className="mb-3 ">
                     <label htmlFor="password" className="form-label">Password</label>
-                    <input type="password" className="form-control" onChange={onchange} id="password" name="password" />
+                    <input type="password" className="form-control" onChange={onchange} id="password" name="password" placeholder="guest123" />
                 </div>
             </div>
             <div className='text-center'>
