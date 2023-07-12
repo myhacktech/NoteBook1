@@ -83,6 +83,7 @@ function SignUp(props) {
               onChange={onchange}
               id="name"
               name="name"
+              required
             />
           </div>
           <div className="mb-3 ">
@@ -96,6 +97,7 @@ function SignUp(props) {
               id="password"
               name="password"
               minLength={5}
+              placeholder="Password must be atleast of 5 characters"
               required
             />
           </div>
@@ -110,6 +112,7 @@ function SignUp(props) {
               id="cpassword"
               name="cpassword"
               minLength={5}
+              placeholder="Confirm Password"
               required
             />
           </div>

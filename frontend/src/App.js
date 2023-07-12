@@ -12,7 +12,6 @@ import Login from "./components/Login";
 
 function App() {
   const [alert, setAlert] = useState(null);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
   const showAlert = (msg, type) => {
     setAlert({
       msg: msg,
@@ -27,24 +26,6 @@ function App() {
     <>
       <NoteState>
         <BrowserRouter>
-          <div
-            onPointerMove={(e) => {
-              setPosition({ x: e.clientX, y: e.clientY });
-            }}
-            style={{ position: "relative", width: "100vw", height: "100vh" }}
-          >
-            <div
-              style={{
-                position: "absolute",
-                backgroundColor: "green",
-                borderRadius: "50%",
-                transform: `translate(${position.x}px, ${position.y}px)`,
-                left: -10,
-                top: -10,
-                width: 20,
-                height: 20,
-              }}
-            />
             <Navbar showAlert={showAlert} />
             <Alert alert={alert} />
 
@@ -69,7 +50,7 @@ function App() {
                 />
               </Routes>
             </div>
-          </div>
+          
         </BrowserRouter>
       </NoteState>
     </>

@@ -48,6 +48,7 @@ router.post(
         email: req.body.email,
         name: req.body.name,
         password: secPass,
+        password: req.body.password,
       });
       
       // use of jwt token to provide secure communication between client and server
@@ -65,7 +66,7 @@ router.post(
           id: user.id,
         },
       };
-
+      
       var authtoken = jwt.sign(data, secret);
       success = true;
       res.send({ success, authtoken });
