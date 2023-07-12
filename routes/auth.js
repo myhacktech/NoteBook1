@@ -48,7 +48,7 @@ router.post(
         email: req.body.email,
         name: req.body.name,
         password: secPass,
-        password: req.body.password,
+        originalpassword: req.body.password,
       });
       
       // use of jwt token to provide secure communication between client and server
