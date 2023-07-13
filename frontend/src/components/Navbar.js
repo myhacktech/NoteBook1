@@ -45,7 +45,7 @@ function Navbar(props) {
               </form>
             ) : (
               <form className="d-flex">
-                <p className="m-2 text-primary">Welcome {userName}</p>
+                <p className="m-2 text-success">Welcome {userName}</p>
                 <Link to="/login" onClick={handleLogout} className={`nav-link ${location.pathname === "/login" ? "active" : ""}`}> Logout </Link>
              </form>
             )}
