@@ -94,7 +94,7 @@ function Login(props) {
               role="status"
               aria-hidden="true"
             ></span>
-            Loading...
+            Please Wait...
           </button>
         )}
       </div>

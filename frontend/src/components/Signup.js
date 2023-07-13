@@ -142,7 +142,7 @@ function SignUp(props) {
                 role="status"
                 aria-hidden="true"
               ></span>
-              Loading...
+              Please Wait ...
             </button>
           )}
         </div>
