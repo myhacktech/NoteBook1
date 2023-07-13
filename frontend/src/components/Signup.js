@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useContext,useState } from "react";
+import NoteContext from "../context/notes/noteContext";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 
 function SignUp(props) {
@@ -8,6 +9,10 @@ function SignUp(props) {
     password: "",
     cpassword: "",
   });
+  
+  const context = useContext(NoteContext);
+  const { fetchData } = context;
+
   const [load, setLoad] = useState(false); // for loading spinner
   let history = useNavigate();
   const location = useLocation();
@@ -38,6 +43,7 @@ function SignUp(props) {
 
       if (json.success) {
         localStorage.setItem("token", json.authtoken); // storing token in local storage
+        fetchData();
         history("/"); // redirect to home page
         props.showAlert(
           "Account created successfully , Now you can add Notes",

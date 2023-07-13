@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import NoteContext from "../context/notes/noteContext";
 import { useNavigate, Link, useLocation } from "react-router-dom";
 
 function Login(props) {
   const location = useLocation();
+
+  const context = useContext(NoteContext);
+  const { fetchData } = context;
+
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   const [load, setLoad] = useState(false); // for loading spinner
   let history = useNavigate();
@@ -28,6 +33,7 @@ function Login(props) {
     // console.log(json);
     if (json.success) {
       localStorage.setItem("token", json.authtoken);
+      fetchData();
       history("/");
       props.showAlert("Logged in successfully", "success");
     } else {

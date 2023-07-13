@@ -2,9 +2,29 @@ import NoteContext from "./noteContext";
 import React, { useState } from "react";
 
 const NoteState = (props) => {
+  
   const notesInitial = [];
 
   const [notes, setnotes] = useState(notesInitial);
+  const [userName, setName] = useState("");
+
+  //fetch user Name
+  const fetchData = async () => {
+    try {
+      const response = await fetch("/api/auth/getuser/", {
+        method: "POST",
+        headers: {
+          "auth-token": localStorage.getItem("token"),
+        },
+      });
+      const json = await response.json();
+
+      setName(json.name);
+    //   console.log(json);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
 
   //get all notes
   const getNote = async () => {
@@ -19,6 +39,7 @@ const NoteState = (props) => {
     const json = await response.json();
     setnotes(json);
   };
+  //
 
   //add a note
   const addNote = async (title, description, tag) => {
@@ -31,7 +52,10 @@ const NoteState = (props) => {
       body: JSON.stringify({ title, description, tag }),
     });
 
-    const note = await response.json();
+    const note = await response.json(); // from here we get the note object
+    // in note object we have ObjectId of added note and success message
+    // why we need ObjectId of each node here is because we need to delete or edit a parrticular note
+
     console.log(note);
     
     if(note.success){
@@ -41,7 +65,7 @@ const NoteState = (props) => {
 
   //delete a note
   const deleteNote = async (id) => {
-    //a\Api call to delete
+    //Api call to delete
     const response = await fetch(`api/notes/deletenote/${id}`, {
       method: "DELETE",
       headers: {
@@ -53,7 +77,7 @@ const NoteState = (props) => {
     const json = await response.json();
     console.log(json);
 
-    //Client side code
+    // Client side code
     const newnotes = notes.filter((note) => {
       return id !== note._id;
     });
@@ -91,7 +115,7 @@ const NoteState = (props) => {
 
   return (
     <NoteContext.Provider
-      value={{ notes, getNote, addNote, deleteNote, editNote }}
+      value={{ notes, getNote, addNote, deleteNote, editNote,fetchData,userName }}
     >
       {props.children}
     </NoteContext.Provider>

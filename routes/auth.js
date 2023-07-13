@@ -114,7 +114,7 @@ router.post(
       const data = {
         user: {
           id: user.id,
-        },
+        }
       };
       var authtoken = jwt.sign(data, secret); // token is formed
       success = true;
@@ -135,7 +135,10 @@ router.post("/getuser", fetchuser, async (req, res) => {
   try {
     const userID = req.user.id;
     // check whether user with this email  exist
-    let user = await User.findOne({ userID }).select("-password");
+    // console.log(userID);
+    let user = await User.findOne({ _id:userID }).select("-password");
+    
+    // console.log(user);
     res.send(user);
   } catch (error) {
     console.log(error.message);

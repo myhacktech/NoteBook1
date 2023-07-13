@@ -12,7 +12,7 @@ const fetchuser = (req, res, next) => {
   }
   try {
     // here data is the payload(user_id) from which token is formed
-    // here we take token from request header and then we verify with secret_key 
+    // here we take token from request header and then we verify with secret_key
     // and take out the payload(user_id) from token using secret_key
     // add user_id in request body
 
