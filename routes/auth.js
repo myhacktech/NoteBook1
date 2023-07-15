@@ -117,6 +117,10 @@ router.post(
         }
       };
       var authtoken = jwt.sign(data, secret); // token is formed
+      
+    // const dataa = jwt.verify(authtoken, secret);
+    // console.log("data", dataa);
+    
       success = true;
       res.json({ success, authtoken }); // send to frontend where (Client)frontend store it in local storage
       //end of jwt use

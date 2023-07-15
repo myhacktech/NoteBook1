@@ -17,7 +17,10 @@ const fetchuser = (req, res, next) => {
     // add user_id in request body
 
     const data = jwt.verify(token, secret);
+
+    // console.log("data", data);
     req.user = data.user;
+
     next(); // then process the next step
   } catch (error) {
     res.status(401).send({ error: "Please use a valid token" });
