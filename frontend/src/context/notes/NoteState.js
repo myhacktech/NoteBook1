@@ -114,9 +114,7 @@ const NoteState = (props) => {
   };
 
   return (
-    <NoteContext.Provider
-      value={{ notes, getNote, addNote, deleteNote, editNote,fetchData,userName }}
-    >
+    <NoteContext.Provider  value={{ notes, getNote, addNote, deleteNote, editNote,fetchData,userName }}>
       {props.children}
     </NoteContext.Provider>
   );

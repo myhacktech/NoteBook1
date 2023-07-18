@@ -33,7 +33,7 @@ if (process.env.NODE_ENV === 'production')
 
 
 
-// Error Handling middlewares
+// Error Handling middlewares 
 app.use(notFound); // if no route is found then this middleware will run
 app.use(errorHandler); // if any error occurs in any route 
 
