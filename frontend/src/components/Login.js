@@ -18,6 +18,7 @@ function Login(props) {
 
   const handleClick = async () => {
     setLoad(true);
+
     const response = await fetch("api/auth/login", {
       method: "POST",
       headers: {
@@ -28,8 +29,9 @@ function Login(props) {
         password: credentials.password,
       }),
     });
+    
     const json = await response.json();
-    setLoad(false);
+    
     // console.log(json);
     if (json.success) {
       localStorage.setItem("token", json.authtoken);
@@ -37,6 +39,7 @@ function Login(props) {
       history("/");
       props.showAlert("Logged in successfully", "success");
     } else {
+      setLoad(false);
       props.showAlert("Invalid Credentials", "danger");
     }
   };
