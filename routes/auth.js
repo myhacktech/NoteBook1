@@ -32,17 +32,21 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
+
     try {
       // check whether user with this email already exist in user schema
       let user = await User.findOne({ email: req.body.email });
+
       if (user) {
         return res
           .status(400)
           .json({ success, error: "A user with this email already exist" });
       }
+
       // use of bcrypt to encrypt password
       var salt = bcrypt.genSaltSync(10); // it creates a salt of 10 characters
       const secPass = bcrypt.hashSync(req.body.password, salt); // it adds salt to password and then encrypts it
+     
       // user schema
       user = await User.create({
         email: req.body.email,
@@ -56,6 +60,8 @@ router.post(
       // 1. algorthims and type of token
       // 2. payload which is data -- here we store user id
       // 3. secret key -- process.env.SECRET_KEY
+
+      // all these 3 parts are encoded and then joined by . and then encoded again wit HMAC SHA256 alogo and then we get a token
       // works as a signature
       // store in local storage of browser and send it to server with every request to authenticate user and provide access to data of user if token is valid 
 
@@ -98,12 +104,14 @@ router.post(
     try {
       // check whether user with this email  exist
       let user = await User.findOne({ email });
+
       if (!user) {
         return res
           .status(400)
           .json({ success, error: "Please login using correct credentials" });
       }
       // use of bcrypt.compare to compare password it return true or false
+
       let passwordCompare = await bcrypt.compare(password, user.password);
       if (!passwordCompare) {
         return res
@@ -135,6 +143,7 @@ router.post(
 // it first call the middleware fetchuser which check whether user is valid or not
 // fetchuser takes the auth-token from request header and then verify it using jwt
 //then call the next function
+
 router.post("/getuser", fetchuser, async (req, res) => {
   try {
     const userID = req.user.id;

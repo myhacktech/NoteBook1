@@ -48,6 +48,7 @@ router.post(
         tag: req.body.tag,
         date:Date.now()
       });
+      
       res.send(note);
     } catch (error) {
       //catch error if any

@@ -6,7 +6,7 @@ import Notes from "./components/Notes";
 import Navbar from "./components/Navbar";
 // BrowserRouter as Router means that we are using the BrowserRouter component as Router.
 // For example:  Switch as Rajat means that we use Switch as Rajat.
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter , Routes, Route } from "react-router-dom";
 import NoteState from "./context/notes/NoteState";
 import Alert from "./components/Alert";
 import SignUp from "./components/Signup";

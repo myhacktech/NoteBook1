@@ -15,9 +15,15 @@ function Login(props) {
   const onchange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
-
+  const handleClick2 = async () => {
+    setLoad(false);
+  };
   const handleClick = async () => {
+    if(credentials.email==="" || credentials.password==="")
+    setLoad(false);
+    else
     setLoad(true);
+
     const response = await fetch("api/auth/login", {
       method: "POST",
       headers: {
@@ -28,8 +34,9 @@ function Login(props) {
         password: credentials.password,
       }),
     });
+    
     const json = await response.json();
-    setLoad(false);
+    
     // console.log(json);
     if (json.success) {
       localStorage.setItem("token", json.authtoken);
@@ -37,6 +44,7 @@ function Login(props) {
       history("/");
       props.showAlert("Logged in successfully", "success");
     } else {
+      setLoad(false);
       props.showAlert("Invalid Credentials", "danger");
     }
   };
@@ -88,7 +96,7 @@ function Login(props) {
             Login
           </button>
         ) : (
-          <button className="btn btn-primary" type="button" disabled>
+          <button className="btn btn-primary" type="button"  onClick={handleClick2}>
             <span
               className="spinner-border spinner-border-sm"
               role="status"
