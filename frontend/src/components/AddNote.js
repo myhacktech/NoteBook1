@@ -39,6 +39,7 @@ function AddNote(props) {
   useEffect(() => {
     //if user is not logged in then redirect to login page
     if (localStorage.getItem("token")) {
+      
       getNote();
     } else {
       navigate("/login");
