@@ -19,7 +19,7 @@ function App() {
     setAlert({ msg: msg, type: type, });
     setTimeout(() => { 
       setAlert(null);
-    }, 2500);
+    }, 1000);
   };
  
   return (

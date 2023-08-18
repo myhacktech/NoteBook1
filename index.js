@@ -2,8 +2,8 @@ const express = require('express');
 const dotenv = require('dotenv');
 const connectToMongo = require('./database ');
 const { errorHandler, notFound } = require('./middleware/error.js');
-const path= require('path');
-var cors = require('cors');
+const path= require('path'); // The path module provides utilities for working with file and directory paths.
+var cors = require('cors'); // 
 
 dotenv.config(); 
 //  is typically used to load and configure environment variables from a .env file in a Node.js application.

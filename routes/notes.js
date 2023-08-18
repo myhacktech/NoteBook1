@@ -1,8 +1,8 @@
 const express = require("express"); 
-const router = express.Router();
+const router = express.Router(); // Router is a method in express which helps in defining routes
 const Notes = require("../models/Note");
 let fetchuser = require("../middleware/fetchuser"); 
-const { body, validationResult } = require("express-validator");// used in body of request
+const { body, validationResult } = require("express-validator"); // used in body of request
 
 //Route 1: fetch all notes of a user using GET
 // login required
