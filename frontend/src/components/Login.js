@@ -96,7 +96,7 @@ function Login(props) {
             Login
           </button>
         ) : (
-          <button className="btn btn-primary" type="button"  >
+          <button className="btn btn-primary" type="button" disabled >
             <span
               className="spinner-border spinner-border-sm"
               role="status"
