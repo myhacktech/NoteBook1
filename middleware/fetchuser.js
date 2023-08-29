@@ -17,7 +17,10 @@ const fetchuser = (req, res, next) => {
     // add user_id in request body
 
     const data = jwt.verify(token, secret);
-
+    // when we decode jwt token we get user_id in data
+    // and some extra data like iat, exp
+    // iat(This stands for "Issued At.") is the time when token is issued 
+    // exp(This stands for "Expiration Time.") is the time when token will expire
     // console.log("data", data);
     req.user = data.user;
 

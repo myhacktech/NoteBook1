@@ -57,9 +57,9 @@ router.post(
       
       // use of jwt token to provide secure communication between client and server
       // it generate a token which has 3 parts
-      // 1. algorthims and type of token
-      // 2. payload which is data -- here we store user id
-      // 3. secret key -- process.env.SECRET_KEY
+      // 1. Header - algorthims and type of token
+      // 2. Payload - payload which is data -- here we store user id
+      // 3. To create the signature part you have to take the encoded header, the encoded payload, a secret, the algorithm specified in the header, and sign that.
 
       // all these 3 parts are encoded and then joined by . and then encoded again wit HMAC SHA256 alogo and then we get a token
       // works as a signature

@@ -1,3 +1,5 @@
+// we export this to wrap the all the component of project to provide data 
+// data provider
 import NoteContext from "./noteContext";
 import React, { useState } from "react";
 
