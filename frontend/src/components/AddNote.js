@@ -1,10 +1,13 @@
 import React, { useContext, useState, useEffect } from "react";
+
 import NoteContext from "../context/notes/noteContext";
+
 import { useNavigate, Link, useLocation } from "react-router-dom";
 
 function AddNote(props) {
   const location = useLocation();
-  const context = useContext(NoteContext);
+
+  const context = useContext(NoteContext); 
   const { addNote, getNote } = context;
 
   const [note, setnote] = useState({ title: "", description: "", tag: "Todo" });
@@ -18,17 +21,11 @@ function AddNote(props) {
   const handleClick = (e) => {
     e.preventDefault(); //to prevent page from reloading
     if (note.title.length < 3 && note.description.length < 5) {
-      props.showAlert(
-        "Add minimum 3 Character in title and 5 in description",
-        "warning"
-      );
+      props.showAlert( "Add minimum 3 Character in title and 5 in description", "warning" );
     } else if (note.title.length < 3) {
       props.showAlert("Add minimum 3 Character in Title", "warning");
     } else if (note.description.length < 5) {
-      props.showAlert(
-        "Add minimum 5 Character in Description",
-        "warning"
-      );
+      props.showAlert("Add minimum 5 Character in Description", "warning");
     } else {
       addNote(note.title, note.description, note.tag);
       setnote({ title: "", description: "", tag: "" });
@@ -39,7 +36,6 @@ function AddNote(props) {
   useEffect(() => {
     //if user is not logged in then redirect to login page
     if (localStorage.getItem("token")) {
-      
       getNote();
     } else {
       navigate("/login");

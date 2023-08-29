@@ -9,7 +9,7 @@ const connectToMongo = async () => {
   } catch (error) {
     console.error(`Error: ${error}`);
     // if not connected then exit the process
-    process.exit();
+    process.exit(); 
   }
 };
 
