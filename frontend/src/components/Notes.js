@@ -1,10 +1,10 @@
 // what is use of useRef in this project?????????????????
 
-import React, { useContext, useEffect, useRef, useState } from 'react';
-import NoteContext from '../context/notes/noteContext'
-import EditNote from './EditNote';
-import NoteItems from './NoteItems';
-import { useNavigate } from 'react-router-dom'
+import React, { useContext, useEffect, useRef, useState } from "react";
+import NoteContext from "../context/notes/noteContext";
+import EditNote from "./EditNote";
+import NoteItems from "./NoteItems";
+import { useNavigate } from "react-router-dom";
 
 function Notes(props) 
 {
@@ -66,4 +66,4 @@ function Notes(props)
     )
 }
 
-export default Notes
+export default Notes;
