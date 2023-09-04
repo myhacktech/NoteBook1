@@ -6,7 +6,8 @@ import EditNote from './EditNote';
 import NoteItems from './NoteItems';
 import { useNavigate } from 'react-router-dom'
 
-function Notes(props) {
+function Notes(props) 
+{
     const context = useContext(NoteContext);
     const { notes, getNote, editNote } = context;
     const [enote, setenote] = useState({ id: "", title: "", description: "", tag: "default" })
@@ -17,12 +18,10 @@ function Notes(props) {
             getNote()
         } else {
             navigate('/login')
-
         }
         // eslint-disable-next-line
-
     }, [])
-
+   // 
     const ref = useRef(null);
     const refclose = useRef(null);
 
@@ -50,7 +49,6 @@ function Notes(props) {
                 <div >
                     <h3>🧾 Your Notes:</h3>
                 </div>
-
             </div>
 
             <EditNote reference={ref} closeref={refclose} enote={enote} onchange={onchange} handleChange={handleEdit} />
