@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import NoteContext from "../context/notes/noteContext";
 import { useNavigate, Link, useLocation } from "react-router-dom";
+import Cookies from 'js-cookie';
 
 function Login(props) {
   const location = useLocation();
@@ -10,7 +11,7 @@ function Login(props) {
 
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   const [load, setLoad] = useState(false); // for loading spinner
-  let history = useNavigate();
+  let navigate = useNavigate();
 
   const onchange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
@@ -39,9 +40,10 @@ function Login(props) {
     
     // console.log(json);
     if (json.success) {
-      localStorage.setItem("token", json.authtoken);
+      // localStorage.setItem("token", json.authtoken);
       fetchData();
-      history("/");
+      navigate("/");
+      // navigate("/Addnote");
       props.showAlert("Logged in successfully", "success");
     } else {
       setLoad(false);

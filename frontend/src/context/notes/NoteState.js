@@ -2,6 +2,7 @@
 // data provider
 import NoteContext from "./noteContext";
 import React, { useState } from "react";
+import Cookies from 'js-cookie';
 
 const NoteState = (props) => {
   
@@ -11,18 +12,18 @@ const NoteState = (props) => {
   const [userName, setName] = useState("");
 
   //fetch user Name
-  const fetchData = async () => {
+  const fetchData =  async() => {
     try {
       const response = await fetch("/api/auth/getuser/", {
         method: "POST",
         headers: {
-          "auth-token": localStorage.getItem("token"),
+          "auth-token": Cookies.get('authtoken'),
         },
       });
       const json = await response.json();
-
+      // setName("json.name");
       setName(json.name);
-    //   console.log(json);
+      // console.log(json);
     } catch (error) {
       console.error("Error:", error);
     }
@@ -34,7 +35,7 @@ const NoteState = (props) => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "auth-token": localStorage.getItem("token"),
+        "auth-token": Cookies.get('authtoken'),
       },
     });
     
@@ -49,7 +50,7 @@ const NoteState = (props) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "auth-token": localStorage.getItem("token"),
+        "auth-token": Cookies.get('authtoken'),
       },
       body: JSON.stringify({ title, description, tag }),
     });
@@ -72,7 +73,7 @@ const NoteState = (props) => {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        "auth-token": localStorage.getItem("token"),
+        "auth-token": Cookies.get('authtoken'),
       },
     });
 
@@ -93,7 +94,7 @@ const NoteState = (props) => {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        "auth-token": localStorage.getItem("token"),
+        "auth-token": Cookies.get('authtoken'),
       },
 
       body: JSON.stringify({ title, description, tag }),

@@ -3,7 +3,7 @@ import React, { useContext, useState, useEffect } from "react";
 import NoteContext from "../context/notes/noteContext";
 
 import { useNavigate, Link, useLocation } from "react-router-dom";
-
+import Cookies from 'js-cookie';
 function AddNote(props) {
   const location = useLocation();
 
@@ -35,7 +35,9 @@ function AddNote(props) {
   // use of
   useEffect(() => {
     //if user is not logged in then redirect to login page
-    if (localStorage.getItem("token")) {
+    // console.log("ok", Cookies.get('authtoken'));
+    if (Cookies.get('authtoken')!= undefined) {
+      // console.log("I am from addnote component", Cookies.get('authtoken'));
       getNote();
     } else {
       navigate("/login");

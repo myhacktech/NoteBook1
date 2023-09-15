@@ -14,7 +14,7 @@ function SignUp(props) {
   const { fetchData } = context;
 
   const [load, setLoad] = useState(false); // for loading spinner
-  let history = useNavigate();
+  let navigate = useNavigate();
   const location = useLocation();
   const onchange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
@@ -42,9 +42,9 @@ function SignUp(props) {
       // console.log(json);
 
       if (json.success) {
-        localStorage.setItem("token", json.authtoken); // storing token in local storage
+        // localStorage.setItem("token", json.authtoken); // storing token in local storage
         fetchData();
-        history("/"); // redirect to home page
+        navigate("/"); // redirect to home page
         props.showAlert(
           "Account created successfully , Now you can add Notes",
           "success"
