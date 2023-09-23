@@ -19,14 +19,11 @@ function Notes(props) {
   });
   const navigate = useNavigate();
 
-  useEffect( () => {
+  useEffect(() => {
     if (Cookies.get("authtoken")) {
-        
-          
-          // Schedule the sayHello function to execute after 2000 milliseconds (2 seconds)
-          // setTimeout(getNote(), 2000);
+      // Schedule the sayHello function to execute after 2000 milliseconds (2 seconds)
+      // setTimeout(getNote(), 2000);
       getNote();
-
     } else {
       navigate("/login");
     }
@@ -55,7 +52,12 @@ function Notes(props) {
 
   return notes.length === 0 ? (
     <>
-    <Shimmer/>
+      <div className="my-5">
+        <div>
+          <h3>🧾 Your Notes:</h3>
+        </div>
+      </div>
+      <Shimmer />
     </>
   ) : (
     <>
