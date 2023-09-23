@@ -5,65 +5,91 @@ import NoteContext from "../context/notes/noteContext";
 import EditNote from "./EditNote";
 import NoteItems from "./NoteItems";
 import { useNavigate } from "react-router-dom";
-import Cookies from 'js-cookie';
-function Notes(props) 
-{
-    const context = useContext(NoteContext);
-    const { notes, getNote, editNote } = context;
-    const [enote, setenote] = useState({ id: "", title: "", description: "", tag: "default" })
-    const navigate = useNavigate();
+import Cookies from "js-cookie";
+import Shimmer from "./Shimmer";
+function Notes(props) {
+  const context = useContext(NoteContext);
+  const { notes, getNote, editNote } = context;
 
-    useEffect(() => {
-        if (Cookies.get('authtoken')) {
-            getNote()
-        } else {
-            navigate('/login')
-        }
-        // eslint-disable-next-line
-    }, [])
-   // 
-    const ref = useRef(null);
-    const refclose = useRef(null);
+  const [enote, setenote] = useState({
+    id: "",
+    title: "",
+    description: "",
+    tag: "default",
+  });
+  const navigate = useNavigate();
 
-    const updateNote = (currentNote) => {
-        ref.current.click()
-        setenote(currentNote)
+  useEffect( () => {
+    if (Cookies.get("authtoken")) {
+        
+          
+          // Schedule the sayHello function to execute after 2000 milliseconds (2 seconds)
+          // setTimeout(getNote(), 2000);
+      getNote();
+
+    } else {
+      navigate("/login");
     }
+    // eslint-disable-next-line
+  }, []);
+  //
+  const ref = useRef(null);
+  const refclose = useRef(null);
 
-    const onchange = (e) => {
-        setenote({ ...enote, [e.target.name]: e.target.value })
-    }
+  const updateNote = (currentNote) => {
+    ref.current.click();
+    setenote(currentNote);
+  };
 
-    const handleEdit = (e) => {
-        e.preventDefault();
-        editNote(enote._id, enote.title, enote.description, enote.tag)
-        refclose.current.click()
+  const onchange = (e) => {
+    setenote({ ...enote, [e.target.name]: e.target.value });
+  };
 
-        props.showAlert("Note is updated successfully", "success")
-    }
+  const handleEdit = (e) => {
+    e.preventDefault();
+    editNote(enote._id, enote.title, enote.description, enote.tag);
+    refclose.current.click();
 
+    props.showAlert("Note is updated successfully", "success");
+  };
 
-    return (
-        <>
-            <div className='my-5' >
-                <div >
-                    <h3>🧾 Your Notes:</h3>
-                </div>
-            </div>
+  return notes.length === 0 ? (
+    <>
+    <Shimmer/>
+    </>
+  ) : (
+    <>
+      <div className="my-5">
+        <div>
+          <h3>🧾 Your Notes:</h3>
+        </div>
+      </div>
 
-            <EditNote reference={ref} closeref={refclose} enote={enote} onchange={onchange} handleChange={handleEdit} />
+      <EditNote
+        reference={ref}
+        closeref={refclose}
+        enote={enote}
+        onchange={onchange}
+        handleChange={handleEdit}
+      />
 
-            <div className='row mb-5'>
-                <div className='mx-3'>
-                    {notes.length === 0 && "No notes to display.."}
-                </div>
-                {notes.map((note) => {
-                    return <NoteItems key={note._id} note={note} updateNote={updateNote} showAlert={props.showAlert} />
-                })}
-
-            </div>
-        </>
-    )
+      <div className="row mb-5">
+        <div className="mx-3">
+          {notes.length === 0 && "No notes to display.."}
+        </div>
+        {notes.map((note) => {
+          return (
+            <NoteItems
+              key={note._id}
+              note={note}
+              updateNote={updateNote}
+              showAlert={props.showAlert}
+            />
+          );
+        })}
+      </div>
+    </>
+  );
 }
 
 export default Notes;

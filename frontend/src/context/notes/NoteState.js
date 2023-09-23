@@ -31,6 +31,7 @@ const NoteState = (props) => {
 
   //get all notes
   const getNote = async () => {
+
     const response = await fetch("api/notes/fetchallnotes", {
       method: "GET",
       headers: {
@@ -59,7 +60,7 @@ const NoteState = (props) => {
     // in note object we have ObjectId of added note and success message
     // why we need ObjectId of each node here is because we need to delete or edit a parrticular note
 
-    console.log(note);
+    // console.log(note);
     
     if(note.success){
     setnotes(notes.concat(note));
@@ -78,7 +79,7 @@ const NoteState = (props) => {
     });
 
     const json = await response.json();
-    console.log(json);
+    // console.log(json);
 
     // Client side code
     const newnotes = notes.filter((note) => {

@@ -38,7 +38,7 @@ function AddNote(props) {
     // console.log("ok", Cookies.get('authtoken'));
     if (Cookies.get('authtoken')!= undefined) {
       // console.log("I am from addnote component", Cookies.get('authtoken'));
-      getNote();
+      // getNote();
     } else {
       navigate("/login");
     }

@@ -36,3 +36,28 @@ body{
     transform: rotate(360deg);
   }
 }
+
+.note-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px; /* Adjust the gap between shimmer cards as needed */
+}
+
+.shimmer-card {
+  width: 30%; /* Adjust the width of each shimmer card as needed */
+  height: 200px; /* Adjust the height of each shimmer card as needed */
+  background: linear-gradient(-90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+  border-radius: 8px; /* Add rounded corners if desired */
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
