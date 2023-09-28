@@ -15,6 +15,8 @@ import useOnline from "./Hooks/useOnline";
 import Appp from "./Game/App.js";
 
 function App() {
+  // console.log(window.navigator);
+
   const [alert, setAlert] = useState(null);
 
   const showAlert = (msg, type) => {
