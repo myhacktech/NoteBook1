@@ -10,7 +10,7 @@ dotenv.config();
 
 connectToMongo(); // connecting to database
 
-const dateTimeObject = new Date();
+const dateTimeObject = new Date("yourInputDateInASuitableFormat").toLocaleString("en-US", {timeZone: 'Asia/Kolkata'});
 console.log("Server started at:-");
 console.log("");
 console.log(
